@@ -87,15 +87,15 @@ flowchart LR
 <!-- subscriptions:start -->
 | 客户端 | 订阅地址 |
 | --- | --- |
-| Surge / Egern | [https://raw.githubusercontent.com/xepes0/wloc/refs/heads/main/modules/wloc.sgmodule](https://raw.githubusercontent.com/xepes0/wloc/refs/heads/main/modules/wloc.sgmodule) |
-| Quantumult X | [https://raw.githubusercontent.com/xepes0/wloc/refs/heads/main/modules/wloc.conf](https://raw.githubusercontent.com/xepes0/wloc/refs/heads/main/modules/wloc.conf) |
-| Loon | [https://raw.githubusercontent.com/xepes0/wloc/refs/heads/main/modules/wloc.lpx](https://raw.githubusercontent.com/xepes0/wloc/refs/heads/main/modules/wloc.lpx) |
-| Stash | [https://raw.githubusercontent.com/xepes0/wloc/refs/heads/main/modules/wloc.stoverride](https://raw.githubusercontent.com/xepes0/wloc/refs/heads/main/modules/wloc.stoverride) |
-| Shadowrocket | [https://raw.githubusercontent.com/xepes0/wloc/refs/heads/main/modules/wloc.module](https://raw.githubusercontent.com/xepes0/wloc/refs/heads/main/modules/wloc.module) |
+| Surge / Egern | [https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.sgmodule](https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.sgmodule) |
+| Quantumult X | [https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.conf](https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.conf) |
+| Loon | [https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.lpx](https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.lpx) |
+| Stash | [https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.stoverride](https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.stoverride) |
+| Shadowrocket | [https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.module](https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.module) |
 
-选点页面：[https://wloc.xepesw.workers.dev/](https://wloc.xepesw.workers.dev/)。
+选点页面：尚未配置公共实例，请按下方说明自行部署。
 
-[浏览源码](https://github.com/xepes0/wloc) · [部署到 Cloudflare Workers](https://deploy.workers.cloudflare.com/?url=https://github.com/xepes0/wloc/tree/main/worker)
+[浏览源码](https://github.com/lg996/wloc) · [部署到 Cloudflare Workers](https://deploy.workers.cloudflare.com/?url=https://github.com/lg996/wloc/tree/main/worker)
 <!-- subscriptions:end -->
 
 Egern 沿用上游 Surge 模块兼容说明，尚未单独复核。Stash 使用原生 `.stoverride`。
