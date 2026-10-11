@@ -93,7 +93,7 @@ flowchart LR
 | Stash | [https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.stoverride](https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.stoverride) |
 | Shadowrocket | [https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.module](https://raw.githubusercontent.com/lg996/wloc/refs/heads/main/modules/wloc.module) |
 
-选点页面：尚未配置公共实例，请按下方说明自行部署。
+选点页面：[https://wloc-lg996.lg996.workers.dev/](https://wloc-lg996.lg996.workers.dev/)。
 
 [浏览源码](https://github.com/lg996/wloc) · [部署到 Cloudflare Workers](https://deploy.workers.cloudflare.com/?url=https://github.com/lg996/wloc/tree/main/worker)
 <!-- subscriptions:end -->
