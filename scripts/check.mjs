@@ -48,5 +48,48 @@ for (const name of ['README.md', 'CONTRIBUTING.md', 'SECURITY.md', 'CHANGELOG.md
     catch { errors.push(`${name} 的本地链接不存在: ${target}`); }
   }
 }
+// ---------------------------------------------------------------- 敏感信息
+// 本仓库是公开仓库：一旦提交个人身份信息或凭据，即永久泄露且无法真正撤回。
+// 注意：**不得把具体的个人标识值（邮箱、账号 ID、机器名等）写进本文件**，
+// 否则这个检查脚本自身就成了泄露源。只能使用通用模式。
+const SENSITIVE = [
+  [/gh[pous]_[A-Za-z0-9]{20,}/, 'GitHub 令牌'],
+  [/github_pat_[A-Za-z0-9_]{20,}/, 'GitHub 细粒度令牌'],
+  [/-----BEGIN [A-Z ]*PRIVATE KEY/, '私钥内容'],
+  [/AKIA[0-9A-Z]{16}/, 'AWS Access Key'],
+  [/xox[baprs]-[A-Za-z0-9-]{10,}/, 'Slack 令牌'],
+  [/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/, '邮箱地址'],
+  [/[A-Za-z]:[\\/]{1,2}Users[\\/]/, '本机用户目录路径'],
+];
+
+// 用纯 Node 遍历而非调用 git：不依赖外部进程（某些受限环境会阻止 spawn），
+// 且每个文件只读一次。注意**不能吞掉读取错误**，否则检查会在失败时静默通过。
+const SKIP_DIRS = new Set(['.git', 'node_modules', 'build', '.wrangler', '.npm-cache']);
+const TEXT_EXT = /\.(md|markdown|js|mjs|cjs|json|jsonc|toml|yml|yaml|txt|conf|sgmodule|lpx|module|stoverride|html|css|ts|tsx|py|sh)$/i;
+
+async function collectTextFiles(dir, out = []) {
+  for (const e of await readdir(dir, { withFileTypes: true })) {
+    if (e.isDirectory()) {
+      if (!SKIP_DIRS.has(e.name)) await collectTextFiles(path.join(dir, e.name), out);
+    } else if (e.isFile() && TEXT_EXT.test(e.name)) {
+      out.push(path.join(dir, e.name));
+    }
+  }
+  return out;
+}
+
+const scanFiles = await collectTextFiles(root);
+const found = SENSITIVE.map(([, label]) => [label, []]);
+for (const file of scanFiles) {
+  const content = await readFile(file, 'utf8').catch(() => null);
+  if (content === null) errors.push(`敏感信息检查无法读取文件：${path.relative(root, file)}`);
+  else for (const [re, label] of SENSITIVE) {
+    if (re.test(content)) found.find(([l]) => l === label)[1].push(path.relative(root, file));
+  }
+}
+for (const [label, hits] of found) {
+  if (hits.length) errors.push(`检测到疑似${label}，涉及：${hits.join('、')}`);
+}
+
 if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
-else console.log('仓库配置、模块链接、文档链接和上游文件完整性检查通过。');
+else console.log('仓库配置、模块链接、文档链接、上游文件完整性及敏感信息检查通过。');
