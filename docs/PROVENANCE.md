@@ -19,4 +19,4 @@ GitHub 公共 API 对 `Yu9191/wloc` 和 `Yu9191` 用户均返回 404。它只证
 
 [upstream-integrity.json](upstream-integrity.json) 记录恢复基线、两份 dist 和 LICENSE 的 SHA-256（规范化 LF 换行）。维护整理不改动这些文件。将来改动时应说明来源、建立测试并有意识地更新完整性记录。
 
-本次本地另留 Git bundle 及恢复目录，它们被 .gitignore 排除，不混入发布仓库。原始版本始终可以通过 `git show 529fcd8:README.md` 等 Git 命令查看。
+本仓库不保留本地离线备份：完整版本历史由 Git 承载，任意历史版本都可用 `git show 529fcd8:README.md` 之类的命令直接查看，需要离线副本时随时 `git clone` 即可。`.gitignore` 中预留了 `/*.bundle`、`/recovered-upstream/` 等排除规则，用于避免将来临时生成的离线副本被误提交。
