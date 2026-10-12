@@ -1,7 +1,8 @@
 {
-  "name": "wloc-spoofer",
+  "name": "wloc-lg996-pages",
   // 与 wrangler.jsonc 保持同步 —— 两边跑的是同一份代码, compatibility_date
   // 一旦漂开, Pages 和 Workers 就会落在不同的运行时语义上。
+  // name 带 -pages 后缀以区分两种部署方式的产物。
   "compatibility_date": "2026-08-05",
   "pages_build_output_dir": "./dist"
 }

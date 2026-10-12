@@ -26,6 +26,19 @@ for (const name of await readdir(path.join(root, 'modules'))) {
   if (/Yu9191\/wloc|wloc-pages\.pages\.dev|wloc-spoofer\.wloc\.workers\.dev|icloud\.com\/shortcuts/.test(content)) errors.push(`${name} 仍含旧运行链接`);
   for (const target of ['dist/wloc.js', 'dist/wloc-settings.js']) if (!content.includes(target)) errors.push(`${name} 缺少 ${target}`);
 }
+
+// 文档中不得残留外部公共实例地址（来源声明与历史记录除外）。
+// 教训：此前该检查只覆盖 modules/，导致 README 与 docs/ 中的上游实例地址长期未被发现。
+const EXTERNAL_HOST = /wloc\.xepesw\.workers\.dev|wloc-pages\.pages\.dev/;
+const HOST_EXEMPT = new Set(['docs/PROVENANCE.md', 'CHANGELOG.md']);
+const docNames = ['README.md', ...(await readdir(path.join(root, 'docs')))
+  .filter((x) => x.endsWith('.md')).map((x) => `docs/${x}`)];
+for (const name of docNames) {
+  if (HOST_EXEMPT.has(name)) continue;
+  const content = await readFile(path.join(root, name), 'utf8');
+  if (EXTERNAL_HOST.test(content)) errors.push(`${name} 含外部公共实例地址，请改为本项目自建地址`);
+}
+
 for (const name of ['README.md', 'CONTRIBUTING.md', 'SECURITY.md', 'CHANGELOG.md', 'NOTICE.md', ...['DEPLOYMENT.md', 'PROVENANCE.md', 'MAINTENANCE.md', 'shortcut-guide.md'].map(x => `docs/${x}`)]) {
   const content = await readFile(path.join(root, name), 'utf8');
   for (const match of content.matchAll(/\[[^\]]*\]\(([^)\s]+)\)/g)) {

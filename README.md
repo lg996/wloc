@@ -226,10 +226,10 @@ Certificate
 | WLOC设置位置 xepes0 | [https://www.icloud.com/shortcuts/0a6465168d554135b78008a8b4bd7c01](https://www.icloud.com/shortcuts/0a6465168d554135b78008a8b4bd7c01) | 从地图分享位置，解析坐标并保存到代理客户端 |
 | wloc 清理恢复位置 | [https://www.icloud.com/shortcuts/f42632d406504f24a2cd163af4fe012f](https://www.icloud.com/shortcuts/f42632d406504f24a2cd163af4fe012f) | 清除已保存的虚拟坐标 |
 
-“WLOC设置位置 xepes0”基于原作者版本，当前解析服务为：
+“WLOC设置位置 xepes0”基于原作者版本，本项目使用的解析服务为：
 
 ```text
-https://wloc.xepesw.workers.dev/api/parse
+https://wloc-lg996.lg996.workers.dev/api/parse
 ```
 
 维护者已对当前快捷指令的 `/api/parse?format=json` 解析链路进行过真机测试。**这只表示快捷指令解析链路可工作，不代表 iOS 27 正式版支持传统 WLOC。**
@@ -240,7 +240,7 @@ https://wloc.xepesw.workers.dev/api/parse
 
 打开：
 
-**https://wloc.xepesw.workers.dev/**
+**https://wloc-lg996.lg996.workers.dev/**
 
 可以在地图上选点、搜索地点、输入经纬度或粘贴地图分享链接。
 
@@ -471,7 +471,7 @@ latitude
 当前解析接口使用：
 
 ```text
-https://wloc.xepesw.workers.dev/api/parse?format=json&u=...
+https://wloc-lg996.lg996.workers.dev/api/parse?format=json&u=...
 ```
 
 如果仍在使用旧快捷指令，请改用 README 当前提供的版本。
@@ -488,7 +488,7 @@ https://gs-loc.apple.com/wloc-settings/save
 
 先重新打开 README 当前提供的 iCloud 快捷指令链接。如果 iCloud 分享服务暂时异常，也可以直接使用网页选点：
 
-**https://wloc.xepesw.workers.dev/**
+**https://wloc-lg996.lg996.workers.dev/**
 
 ### 网页显示保存成功，但地图位置不变
 
